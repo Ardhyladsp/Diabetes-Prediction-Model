@@ -37,7 +37,7 @@
             <div class="header_bottom">
                 <div class="container-fluid">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="/">
                             <img src="/static/images/logo.png" alt="">
                         </a>
 
@@ -93,12 +93,12 @@
         
                         <div class="form-row">
                             <div class="form-group col-md-5">
-                                <label for="jk" >Jenis Kelamin</label>
+                                <label for="s1">Jenis Kelamin</label>
                                 <select id="s1" name="s1" required class="form-control">
                                     <option disabled selected>Pilih...</option>
-                                    <option value="true">Laki-laki</option>
-                                    <option value="false">Perempuan</option>
-                                 </select>
+                                    <option value="1">Laki-laki</option>
+                                    <option value="0">Perempuan</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="tb">Tinggi Badan</label>
@@ -146,25 +146,25 @@
                         </hr>
         
                         <div class="form-group row justify-content-center">
-                            <label for="gthae" class="col-sm-3 col-form-label">Gula Darah Sewaktu</label>
+                            <label for="gds" class="col-sm-3 col-form-label">Gula Darah Sewaktu</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="gds" name="gds" placeholder="Gula darah sewaktu">
+                                <input type="number" class="form-control" id="gds" name="gds" placeholder="Gula darah sewaktu" required>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <label for="fpg" class="col-sm-3 col-form-label">Gula Darah Puasa</label>
+                            <label for="gdp" class="col-sm-3 col-form-label">Gula Darah Puasa</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="fpg" name="fpd" placeholder="Gula darah puasa" />
+                                <input type="number" class="form-control" id="gdp" name="gdp" placeholder="Gula darah puasa" required>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <label for="gthae" class="col-sm-3 col-form-label">Gula Darah 2 Jam PP</label>
+                            <label for="gdpp" class="col-sm-3 col-form-label">Gula Darah 2 Jam PP</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="gdpp" name="gdpp" placeholder="Gula darah 2 jam post prandial">
+                                <input type="number" class="form-control" id="gdpp" name="gdpp" placeholder="Gula darah 2 jam post prandial" required>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <label for="nama" class="col-sm-3 col-form-label">Jenis Aktivitas</label>
+                            <label for="aktivitasSelect" class="col-sm-3 col-form-label">Jenis Aktivitas</label>
                             <div class="col-sm-8">
                                 <select name="aktivitas" id="aktivitasSelect" required class="form-control">
                                     <option disabled selected>Pilih...</option>
@@ -178,10 +178,11 @@
 
                         <div class="container mt-5">
                             <!-- Button to Open the Modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">
+                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">
                                 Periksa
                             </button>
 
+                            {% if penyakit %}
                             <!-- The Modal -->
                             <div class="modal fade" id="resultModal">
                                 <div class="modal-dialog modal-lg">
@@ -195,19 +196,19 @@
 
                                         <!-- Modal Body -->
                                         <div class="modal-body">
-                                            <h5>Nama Pasien: <span id="namaPasien">John Doe</span></h5>
-                                            <h5><strong>Hasil Diagnosis:</strong> <span id="hasilDiagnosis" name="hasilDiagnosis">Diabetes</span></h5> <br>
+                                            <h5>Nama Pasien: <span id="namaPasien">{{ nama }}</span></h5>
+                                            <h5><strong>Hasil Diagnosis:</strong> <span id="hasilDiagnosis" name="hasilDiagnosis"}>{{ penyakit }}</span></h5> <br>
                                             <div>
                                                 <h5>Standar Porsi Makan</h5>
-                                                <p id="standarPorsiMakan" name="standarPorsiMakan">Standar porsi makan yang dianjurkan adalah ...</p><br>
+                                                <p id="standarPorsiMakan" name="standarPorsiMakan">{{ spm }}</p><br>
                                             </div>
                                             <div>
                                                 <h5>Saran Menu Makan</h5>
-                                                <p id="saranMenuMakan" name="saranMenuMakan">Saran menu makan untuk pasien adalah ...</p><br>
+                                                <p id="saranMenuMakan" name="saranMenuMakan">{{ smm }}</p><br>
                                             </div>
                                             <div>
                                                 <h5>Saran Latihan Fisik</h5>
-                                                <p id="saranLatihanFisik" name="saranLatihanFisik">Saran latihan fisik untuk pasien adalah ...</p><br>
+                                                <p id="saranLatihanFisik" name="saranLatihanFisik">{{ latihan }}</p><br>
                                             </div>
                                         </div>
 
@@ -219,338 +220,13 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                     </form>
                 </div>
             </div>
         </div>  
     </section>
-
-
-
-    {% if penyakit %}
-    <h2>Hasil Prediksi:</h2>
-    <p>{{ penyakit }}</p>
-
-    <h2>Solusi:</h2>
-    {% if solusi == 'E01' %}
-    <p>Energi 1100 kalori:</p>
-    <p>- Olahraga</p>
-    <p>Aktivitas ringan seperti berjalan cepat, bersepeda santai, yoga, atau berenang.</p>
-    <p>Latihan kekuatan ringan dengan menggunakan beban tubuh atau alat ringan seperti dumbbell.</p>
-    <p>- Standar Porsi Makan</p>
-    <p>Nasi atau penukar :2 ½ cup</p>
-    <p>Ikan atau penukar : 2</p>
-    <p>Daging atau penukar : 1</p>
-    <p>Tempe atau penukar : 2 </p>
-    <p>Sayuran atau penukar A : S (Sekehendak) </p>
-    <p>Sayuran atau penukar B : 2</p>
-    <p>Buah atau penukar : 4 </p>
-    <p>Susu : - </p>
-    <p>Minyak atau penukar : 3</p>
-    <p>- Saran menu makan:</p>
-    <p>Pagi 07.00</p>
-    <p>Nasi : ½ </p>
-    <p>Ikan : 1 </p>
-    <p>Tempe : - </p>
-    <p>Sayuran A : S (Sekehendak) </p>
-    <p>Minyak : 1 </p>
-    <!-- Sertakan bagian Saran menu makan untuk E01 di sini -->
-    {% elif solusi == 'E02' %}
-    <p>Energi 1300 kalori:</p>
-    <p>- Olahraga</p>
-    <p>Aktivitas ringan seperti berjalan cepat, bersepeda santai, yoga, atau berenang.</p>
-    <p>Latihan kekuatan ringan dengan menggunakan beban tubuh atau alat ringan seperti dumbbell.</p>
-    <p>- Standar Porsi Makan</p>
-    <p>Nasi atau penukar : 3 cup</p>
-    <p>Ikan atau penukar : 2</p>
-    <p>Daging atau penukar : 1</p>
-    <p>Tempe atau penukar : 2 </p>
-    <p>Sayuran atau penukar A : S (Sekehendak) </p>
-    <p>Sayuran atau penukar B : 2</p>
-    <p>Buah atau penukar : 4 </p>
-    <p>Susu : - </p>
-    <p>Minyak atau penukar : 4</p>
-    <p>- Saran menu makan:</p>
-    <p>Pagi 07.00</p>
-    <p>Nasi : 1</p>
-    <p>Ikan : 1 </p>
-    <p>Tempe : - </p>
-    <p>Sayuran A : S (Sekehendak) </p>
-    <p>Minyak : 1 </p>
-    <p>Pukul 10.00</p>
-    <p>Buah : 1</p>
-    <p>Susu : - </p>
-    <p>Siang 12.00</p>
-    <p>Nasi : 1 </p>
-    <p>Daging : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1</p>
-    <p>Buah : 1</p>
-    <p>Minyak : 2</p>
-    <p>Pukul 16.00</p>
-    <p>Buah : 1</p>
-    <p>Malam 19.00</p>
-    <p>Nasi : 1</p>
-    <p>Ikan : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1 </p>
-    <p>Buah : 1</p>
-    <p>Minyak : 1</p>
-
-
-    {% elif solusi == 'E03' %}
-    <p>Energi 1500 kalori:</p>
-    <p>- Olahraga</p>
-    <p>Aktivitas ringan seperti berjalan cepat, bersepeda santai, yoga, atau berenang.</p>
-    <p>Latihan kekuatan ringan dengan menggunakan beban tubuh atau alat ringan seperti dumbbell.</p>
-    <p>- Standar Porsi Makan</p>
-    <p>Nasi atau penukar : 4 cup</p>
-    <p>Ikan atau penukar : 2</p>
-    <p>Daging atau penukar : 1</p>
-    <p>Tempe atau penukar : 2 ½ </p>
-    <p>Sayuran atau penukar A : S (Sekehendak) </p>
-    <p>Sayuran atau penukar B : 2</p>
-    <p>Buah atau penukar : 4 </p>
-    <p>Susu : - </p>
-    <p>Minyak atau penukar : 4</p>
-    <p>- Saran menu makan:</p>
-    <p>Pagi 07.00</p>
-    <p>Nasi : 1</p>
-    <p>Ikan : 1 </p>
-    <p>Tempe : ½ </p>
-    <p>Sayuran A : S (Sekehendak) </p>
-    <p>Minyak : 1 </p>
-    <p>Pukul 10.00</p>
-    <p>Buah : 1</p>
-    <p>Susu : - </p>
-    <p>Siang 12.00</p>
-    <p>Nasi : 2</p>
-    <p>Daging : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1</p>
-    <p>Buah : 1</p>
-    <p>Minyak : 2</p>
-    <p>Pukul 16.00</p>
-    <p>Buah : 1</p>
-    <p>Malam 19.00</p>
-    <p>Nasi : 1</p>
-    <p>Ikan : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1 </p>
-    <p>Buah : 1</p>
-    <p>Minyak : 1</p>
-    {% elif solusi == 'E04' %}
-    <p>Energi 1700 kalori:</p>
-    <p>- Olahraga</p>
-    <p>Aktivitas aerobik seperti jogging, bersepeda, berenang, atau bermain tenis.</p>
-    <p>Latihan kekuatan dengan beban yang lebih berat untuk membangun kekuatan dan massa otot.</p>
-    <p>- Standar Porsi Makan</p>
-    <p>Nasi atau penukar : 5 cup</p>
-    <p>Ikan atau penukar : 2</p>
-    <p>Daging atau penukar : 1</p>
-    <p>Tempe atau penukar : 2 ½ </p>
-    <p>Sayuran atau penukar A : S (Sekehendak) </p>
-    <p>Sayuran atau penukar B : 2</p>
-    <p>Buah atau penukar : 4 </p>
-    <p>Susu : - </p>
-    <p>Minyak atau penukar : 4</p>
-    <p>- Saran menu makan:</p>
-    <p>Pagi 07.00</p>
-    <p>Nasi : 1</p>
-    <p>Ikan : 1 </p>
-    <p>Tempe : ½ </p>
-    <p>Sayuran A : S (Sekehendak) </p>
-    <p>Minyak : 1 </p>
-    <p>Pukul 10.00</p>
-    <p>Buah : 1</p>
-    <p>Susu : - </p>
-    <p>Siang 12.00</p>
-    <p>Nasi : 2 </p>
-    <p>Daging : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1</p>
-    <p>Buah : 1</p>
-    <p>Minyak : 1</p>
-    <p>Pukul 16.00</p>
-    <p>Buah : 1</p>
-    <p>Malam 19.00</p>
-    <p>Nasi : 2</p>
-    <p>Ikan : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1 </p>
-    <p>Buah : 1</p>
-    <p>Minyak : 1</p>
-    {% elif solusi == 'E05' %}
-    <p>Energi 1900 kalori:</p>
-    <p>- Olahraga</p>
-    <p>Aktivitas aerobik seperti jogging, bersepeda, berenang, atau bermain tenis.</p>
-    <p>Latihan kekuatan dengan beban yang lebih berat untuk membangun kekuatan dan massa otot.</p>
-    <p>- Standar Porsi Makan</p>
-    <p>Nasi atau penukar : 5 ½ cup</p>
-    <p>Ikan atau penukar : 2</p>
-    <p>Daging atau penukar : 1</p>
-    <p>Tempe atau penukar : 3</p>
-    <p>Sayuran atau penukar A : S (Sekehendak)</p>
-    <p>Sayuran atau penukar B : 2</p>
-    <p>Buah atau penukar : 4</p>
-    <p>Susu : - </p>
-    <p>Minyak atau penukar : 6</p>
-    <p>- Saran menu makan:</p>
-    <p>Pagi 07.00</p>
-    <p>Nasi :1 ½ </p>
-    <p>Ikan : 1 </p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Minyak : 2</p>
-    <p>Pukul 10.00</p>
-    <p>Buah : 1</p>
-    <p>Susu : - </p>
-    <p>Siang 12.00</p>
-    <p>Nasi : 2</p>
-    <p>Daging : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1</p>
-    <p>Buah : 1</p>
-    <p>Minyak : 2</p>
-    <p>Pukul 16.00</p>
-    <p>Buah : 1</p>
-    <p>Malam 19.00</p>
-    <p>Nasi : 2</p>
-    <p>Ikan : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1</p>
-    <p>Buah : 1</p>
-    <p>Minyak : 2</p>
-    {% elif solusi == 'E06' %}
-    <p>Energi 2100 kalori:</p>
-    <p>- Olahraga</p>
-    <p>Aktivitas aerobik seperti jogging, bersepeda, berenang, atau bermain tenis.</p>
-    <p>Latihan kekuatan dengan beban yang lebih berat untuk membangun kekuatan dan massa otot.</p>
-    <p>- Standar Porsi Makan</p>
-    <p>Nasi atau penukar : 6 cup</p>
-    <p>Ikan atau penukar : 2</p>
-    <p>Daging atau penukar : 1</p>
-    <p>Tempe atau penukar : 3</p>
-    <p>Sayuran atau penukar A : S (Sekehendak) </p>
-    <p>Sayuran atau penukar B : 2</p>
-    <p>Buah atau penukar : 4 </p>
-    <p>Susu : - </p>
-    <p>Minyak atau penukar : 7</p>
-    <p>- Saran menu makan:</p>
-    <p>Pagi 07.00</p>
-    <p>Nasi : 1 ½ </p>
-    <p>Ikan : 1 </p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak) </p>
-    <p>Minyak : 2</p>
-    <p>Pukul 10.00</p>
-    <p>Buah : 1</p>
-    <p>Susu : - </p>
-    <p>Siang 12.00</p>
-    <p>Nasi : 2 ½ </p>
-    <p>Daging : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1</p>
-    <p>Buah : 1</p>
-    <p>Minyak : 3</p>
-    <p>Pukul 16.00</p>
-    <p>Buah : 1</p>
-    <p>Malam 19.00</p>
-    <p>Nasi : 2</p>
-    <p>Ikan : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1 </p>
-    <p>Buah : 1</p>
-    <p>Minyak : 2</p>
-
-    {% elif solusi == 'E07' %}
-    <p>Energi 2300 kalori:</p>
-    <p>- Olahraga</p>
-    <p>Kombinasi antara latihan kardiovaskular intensitas sedang-hingga-tinggi seperti lari cepat, bersepeda cepat,
-        atau latihan HIIT (High Intensity Interval Training).</p>
-    <p>Latihan kekuatan yang intens dengan menggunakan beban yang lebih berat dan variasi latihan untuk merangsang
-        pertumbuhan otot.</p>
-    <p>- Standar Porsi Makan</p>
-    <p>Nasi atau penukar : 7 cup</p>
-    <p>Ikan atau penukar : 2</p>
-    <p>Daging atau penukar : 1</p>
-    <p>Tempe atau penukar : 3</p>
-    <p>Sayuran atau penukar A : S (Sekehendak)</p>
-    <p>Sayuran atau penukar B : 2</p>
-    <p>Buah atau penukar : 4</p>
-    <p>Susu : 1</p>
-    <p>Minyak atau penukar : 7</p>
-    <p>- Saran menu makan:</p>
-    <p>Pagi 07.00</p>
-    <p>Nasi : 1 ½</p>
-    <p>Ikan : 1</p>
-    <p>Tempe : -</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Minyak : 2</p>
-    <p>Pukul 10.00</p>
-    <p>Buah : 1</p>
-    <p>Susu : 1</p>
-    <p>Siang 12.00</p>
-    <p>Nasi : 3</p>
-    <p>Daging : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1</p>
-    <p>Buah : 1</p>
-    <p>Minyak : 3</p>
-    <p>Pukul 16.00</p>
-    <p>Buah : 1</p>
-    <p>Malam 19.00</p>
-    <p>Nasi : 2 ½</p>
-    <p>Ikan : 1</p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak)</p>
-    <p>Sayuran B : 1</p>
-    <p>Buah : 1</p>
-    <p>Minyak : 2</p>
-
-    {% elif solusi == 'E08' %}
-    <p>Energi 2500 kalori:</p>
-    <p>- Olahraga</p>
-    <p>Kombinasi antara latihan kardiovaskular intensitas sedang-hingga-tinggi seperti lari cepat, bersepeda cepat,
-        atau
-        latihan HIIT (High Intensity Interval Training).</p>
-    <p>Latihan kekuatan yang intens dengan menggunakan beban yang lebih berat dan variasi latihan untuk merangsang
-        pertumbuhan otot.</p>
-    <p>- Standar Porsi Makan</p>
-    <p>Nasi atau penukar :7 ½ cup</p>
-    <p>Ikan atau penukar : 2</p>
-    <p>Daging atau penukar : 1</p>
-    <p>Tempe atau penukar : 5</p>
-    <p>Sayuran atau penukar A : S (Sekehendak) </p>
-    <p>Sayuran atau penukar B : 2</p>
-    <p>Buah atau penukar : 4 </p>
-    <p>Susu : 1</p>
-    <p>Minyak atau penukar : 7</p>
-    <p>- Saran menu makan:</p>
-    <p>Pagi 07.00</p>
-    <p>Nasi : 2 </p>
-    <p>Ikan : 1 </p>
-    <p>Tempe : 1</p>
-    <p>Sayuran A : S (Sekehendak) </p>
-    <p>Minyak : 2 </p>
-    <!-- Sertakan bagian Saran menu makan untuk E08 di sini -->
-    {% else %}
-    <p>Belum Diketahui</p>
-    {% endif %}
-    {% endif %}
-
 
     <script>
         function predict() {
