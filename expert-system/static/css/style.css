@@ -5,6 +5,10 @@ body {
   overflow-x: hidden;
 }
 
+.hero_area{
+  overflow: hidden;
+}
+
 .layout_padding {
   padding: 90px 0;
 }
@@ -101,7 +105,7 @@ a:focus {
 
 .header_section .header_top .contact_nav a {
   margin-right: 25px;
-  color: #555555;
+  color: #1cb45b;
 }
 
 .header_section .header_top .contact_nav a i {
@@ -416,7 +420,7 @@ a:focus {
 .slider_section .detail-box a {
   display: inline-block;
   padding: 10px 45px;
-  background-color: #252525;
+  background-color: #26b981;
   color: #ffffff;
   border-radius: 5px;
   margin-top: 15px;
@@ -427,7 +431,7 @@ a:focus {
 }
 
 .slider_section .img-box img {
-  width: 100%;
+  width: 125%;
 }
 
 .slider_section .carousel_btn-box {

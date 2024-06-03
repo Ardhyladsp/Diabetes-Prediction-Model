@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediksi Penyakit</title>
+    <title>Prediksi Diabetes</title>
     <link rel="stylesheet" href="/static/style.css">
     <!-- Bootstrap CSS -->
     <!-- bootstrap core css -->
@@ -37,6 +37,9 @@
             <div class="header_bottom">
                 <div class="container-fluid">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
+                        <a class="navbar-brand" href="index.html">
+                            <img src="/static/images/logo.png" alt="">
+                        </a>
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -49,9 +52,6 @@
                                 <ul class="navbar-nav  ">
                                     <li class="nav-item ">
                                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="/about"> About</a>
                                     </li>
                                     </li>
                                     <li class="nav-item">
@@ -73,9 +73,9 @@
                 <div class="form_container col-sm-10 col-md-8 col-lg-10 mx-auto">
                     <form method="post" action="/prediksi" id="predictionForm">
                         <h1>Diabetes Test</h1><br>
-                        <div class="form-group row">
-                            <label for="nama" class="col-sm-3 col-form-label">Nama Pasien</label>
-                            <div class="col-sm-7">
+                        <div class="form-group row justify-content-center">
+                            <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap Pasien</label>
+                            <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nama" name="nama" placeholder="nama">
                             </div>
                         </div>
@@ -94,10 +94,10 @@
                         <div class="form-row">
                             <div class="form-group col-md-5">
                                 <label for="jk" >Jenis Kelamin</label>
-                                <select id="s1" required class="form-control">
+                                <select id="s1" name="s1" required class="form-control">
                                     <option disabled selected>Pilih...</option>
-                                    <option value="1">Laki-laki</option>
-                                    <option value="0">Perempuan</option>
+                                    <option value="true">Laki-laki</option>
+                                    <option value="false">Perempuan</option>
                                  </select>
                             </div>
                             <div class="form-group col-md-5">
@@ -110,62 +110,62 @@
                         <div class="form-row">
                             <div class="form-group col-md-5">
                                 <label for="g1">Sering haus</label>
-                                <select id="g2" required class="form-control">
+                                <select id="g1" name="g1" required class="form-control">
                                     <option disabled selected>Pilih...</option>
-                                    <option value="true">Ya</option>
-                                    <option value="false">Tidak</option>
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="g2">Sering lapar</label>
-                                <select id="g2" required class="form-control">
+                                <select id="g2" name="g2" required class="form-control">
                                     <option disabled selected>Pilih...</option>
-                                    <option value="true">Ya</option>
-                                    <option value="false">Tidak</option>
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-5">
                                 <label for="g3">Sering buang air kecil</label>
-                                <select id="g3" required class="form-control">
+                                <select id="g3" name="g3" required class="form-control">
                                     <option disabled selected>Pilih...</option>
-                                    <option value="true">Ya</option>
-                                    <option value="false">Tidak</option>
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="g4">Kenaikan berat badan </label>
-                                <select id="g4" required class="form-control">
+                                <select id="g4" name="g4" required class="form-control">
                                     <option disabled selected>Pilih...</option>
-                                    <option value="true">Ya</option>
-                                    <option value="false">Tidak</option>
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
                                 </select>
                             </div>
                         </div>
                         </hr>
         
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-center">
                             <label for="gthae" class="col-sm-3 col-form-label">Gula Darah Sewaktu</label>
-                            <div class="col-sm-7">
-                                <input type="number" class="form-control" id="gthae" name="gthae" placeholder="Gula darah sewaktu">
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="gds" name="gds" placeholder="Gula darah sewaktu">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-center">
                             <label for="fpg" class="col-sm-3 col-form-label">Gula Darah Puasa</label>
-                            <div class="col-sm-7">
+                            <div class="col-sm-8">
                                 <input type="number" class="form-control" id="fpg" name="fpd" placeholder="Gula darah puasa" />
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-center">
                             <label for="gthae" class="col-sm-3 col-form-label">Gula Darah 2 Jam PP</label>
-                            <div class="col-sm-7">
-                                <input type="number" class="form-control" id="gthae" name="gthae" placeholder="Gula darah 2 jam pp">
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="gdpp" name="gdpp" placeholder="Gula darah 2 jam post prandial">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row justify-content-center">
                             <label for="nama" class="col-sm-3 col-form-label">Jenis Aktivitas</label>
-                            <div class="col-sm-7">
+                            <div class="col-sm-8">
                                 <select name="aktivitas" id="aktivitasSelect" required class="form-control">
                                     <option disabled selected>Pilih...</option>
                                     <option value="1.30">Sangat Ringan</option>
@@ -183,40 +183,39 @@
                             </button>
 
                             <!-- The Modal -->
-                            <div class="modal fade" id="resultModal" >
+                            <div class="modal fade" id="resultModal">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Hasil Diagnosis</h4>
+                                            <h4 class="modal-title">Hasil Pemeriksaan</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
 
                                         <!-- Modal Body -->
                                         <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="patientName">Nama:</label>
-                                                <input type="text" class="form-control" id="patientName" value="John Doe" readonly>
+                                            <h5>Nama Pasien: <span id="namaPasien">John Doe</span></h5>
+                                            <h5><strong>Hasil Diagnosis:</strong> <span id="hasilDiagnosis" name="hasilDiagnosis">Diabetes</span></h5> <br>
+                                            <div>
+                                                <h5>Standar Porsi Makan</h5>
+                                                <p id="standarPorsiMakan" name="standarPorsiMakan">Standar porsi makan yang dianjurkan adalah ...</p><br>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="diagnosis">Diagnosis:</label>
-                                                <textarea class="form-control" id="diagnosis" rows="1" readonly>Diabetes</textarea>
+                                            <div>
+                                                <h5>Saran Menu Makan</h5>
+                                                <p id="saranMenuMakan" name="saranMenuMakan">Saran menu makan untuk pasien adalah ...</p><br>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="portionStandard">Standar Porsi Makan:</label>
-                                                <textarea class="form-control" id="portionStandard" rows="4" readonly>3 servings of vegetables, 2 servings of fruits, 1 serving of protein</textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="mealSuggestion">Saran Menu Makan:</label>
-                                                <textarea class="form-control" id="mealSuggestion" rows="5" readonly>Grilled chicken with steamed broccoli, brown rice, and an apple</textarea>
+                                            <div>
+                                                <h5>Saran Latihan Fisik</h5>
+                                                <p id="saranLatihanFisik" name="saranLatihanFisik">Saran latihan fisik untuk pasien adalah ...</p><br>
                                             </div>
                                         </div>
 
                                         <!-- Modal Footer -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
