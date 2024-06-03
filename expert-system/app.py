@@ -58,50 +58,52 @@ def determine_solusi(energi):
 label_mapping = {0: 'Diabetes', 1: 'Normal', 2: 'Prediabetes'}
 
 
-
-@app.route("/about")
-def about():
-    return render_template("about.html")
-
 @app.route("/")
 def home():
-    cur = mysql.connection.cursor()
-    cur.execute('''SELECT * FROM pasien''')
-    results = cur.fetchall()
-    return render_template("index.html", results=results)
+    return render_template("index.html")
 
 
 @app.route("/prediksi", methods=["GET", "POST"])
 def prediksi():
     if request.method == "POST":
+        nama = request.form["nama"]
         umur = int(request.form["umur"])
-        berat_badan = int(request.form['berat_badan'])
-        tinggi_badan = int(request.form['tinggi_badan'])
-        gula_darah_puasa = int(request.form["gula_darah_puasa"])
-        gula_darah_2_jam_pp = int(request.form["gula_darah_2_jam_pp"])
-        gender = int(request.form["gender"])
-        gejala = int(request.form["gejala"])
+        berat_badan = int(request.form['bb'])
+        tinggi_badan = int(request.form['tb'])
+        gulah_darah_sewaktu = int(request.form["gds"])
+        gula_darah_puasa = int(request.form["gdp"])
+        gula_darah_2_jam_pp = int(request.form["gdpp"])
+        gender = int(request.form["s1"])
+        gejala1 = int(request.form["g1"])
+        gejala2 = int(request.form["g2"])
+        gejala3 = int(request.form["g3"])
+        gejala4 = int(request.form["g4"])
         aktivitas = float(request.form.get('aktivitas', 0.0))
 
-        input_data = pd.DataFrame({
-            'Umur': [umur],
-            # 'Berat Badan': [berat_badan],
-            # 'Tinggi Badan': [tinggi_badan],
-            'Gula Darah Puasa': [gula_darah_puasa],
-            'Gula Darah 2 Jam PP': [gula_darah_2_jam_pp],
-            'Gender': [gender],
-            'Gejala': [gejala],
-        })
+        # input_data = pd.DataFrame({
+        #     'Umur': [umur],
+        #     'Berat Badan': [berat_badan],
+        #     'Tinggi Badan': [tinggi_badan],
+        #     'Gula Darah Puasa': [gula_darah_puasa],
+        #     'Gula Darah 2 Jam PP': [gula_darah_2_jam_pp],
+        #     'Gender': [gender],
+        #     'Gejala': [gejala1 or gejala2 or gejala3 or gejala4],
+        # })
 
-      
-        penyakit_prediksi = loaded_model.predict(input_data)
-        prediksi = label_mapping.get(penyakit_prediksi[0], 'Belum Diketahui')
-        # print("Predicted Disease:", prediksi)
-        energi = calculate_energi(umur, berat_badan, tinggi_badan, aktivitas, gender)
+        # penyakit_prediksi = loaded_model.predict(input_data)
+        # prediksi = label_mapping.get(penyakit_prediksi[0], 'Belum Diketahui')
+        # energi = calculate_energi(umur, berat_badan, tinggi_badan, aktivitas, gender)
+        # solusi = determine_solusi(energi)
 
-        solusi = determine_solusi(energi)
-        # print("Determined Solusi:", solusi)
-        return render_template("prediksi.html", penyakit=prediksi, solusi=solusi)
+        # Save the data to the database
+        cur = mysql.connection.cursor()
+        cur.execute('''INSERT INTO pasien (nama, umur, jenis_kelamin, berat_badan, tinggi_badan, g1, g2, g3, g4, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, jenis_aktivitas) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',
+                    (nama, umur, gender, berat_badan, tinggi_badan, gejala1, gejala2, gejala3, gejala4, gulah_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, aktivitas))
+        mysql.connection.commit()
+        cur.close()
+
+        # return render_template("prediksi.html", penyakit=prediksi, solusi=solusi)
+        return render_template("prediksi.html")
 
     return render_template("prediksi.html")
 
