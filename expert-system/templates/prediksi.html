@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Penyakit</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Bootstrap CSS -->
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css" />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- font awesome style -->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- nice select -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+        integrity="sha256-mLBIhmBvigTFWPSCtvdu6a76T+3Xyt+K571hupeFLg4=" crossorigin="anonymous" />
+    <!-- datepicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="/static/css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="hero_area">
+        <header class="header_section">
+            <div class="header_bottom">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg custom_nav-container ">
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""> </span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <div class="d-flex mr-auto flex-column flex-lg-row align-items-center">
+                                <ul class="navbar-nav  ">
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="/about"> About</a>
+                                    </li>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/prediksi">Prediksi</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- end header section -->
+
+    <section class="layout_padding-bottom mt-4">
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="form_container col-sm-10 col-md-8 col-lg-10 mx-auto">
+                    <form method="post" action="/prediksi" id="predictionForm">
+                        <h1>Diabetes Test</h1><br>
+                        <div class="form-group row">
+                            <label for="nama" class="col-sm-3 col-form-label">Nama Pasien</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="nama">
+                            </div>
+                        </div>
+        
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="umur">Umur</label>
+                                <input type="number" class="form-control" id="umur" name="umur" placeholder="umur" required>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="bb">Berat Badan</label>
+                                <input type="number" class="form-control" id="bb" name="bb" placeholder="berat badan" required>
+                            </div>
+                        </div>
+        
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="jk" >Jenis Kelamin</label>
+                                <select id="s1" required class="form-control">
+                                    <option disabled selected>Pilih...</option>
+                                    <option value="1">Laki-laki</option>
+                                    <option value="0">Perempuan</option>
+                                 </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="tb">Tinggi Badan</label>
+                                <input type="number" class="form-control" id="tb" name="tb" placeholder="tinggi badan" required>
+                            </div>
+                        </div>
+        
+                        <hr>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="g1">Sering haus</label>
+                                <select id="g2" required class="form-control">
+                                    <option disabled selected>Pilih...</option>
+                                    <option value="true">Ya</option>
+                                    <option value="false">Tidak</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="g2">Sering lapar</label>
+                                <select id="g2" required class="form-control">
+                                    <option disabled selected>Pilih...</option>
+                                    <option value="true">Ya</option>
+                                    <option value="false">Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="g3">Sering buang air kecil</label>
+                                <select id="g3" required class="form-control">
+                                    <option disabled selected>Pilih...</option>
+                                    <option value="true">Ya</option>
+                                    <option value="false">Tidak</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="g4">Kenaikan berat badan </label>
+                                <select id="g4" required class="form-control">
+                                    <option disabled selected>Pilih...</option>
+                                    <option value="true">Ya</option>
+                                    <option value="false">Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                        </hr>
+        
+                        <div class="form-group row">
+                            <label for="gthae" class="col-sm-3 col-form-label">Gula Darah Sewaktu</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" id="gthae" name="gthae" placeholder="Gula darah sewaktu">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fpg" class="col-sm-3 col-form-label">Gula Darah Puasa</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" id="fpg" name="fpd" placeholder="Gula darah puasa" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="gthae" class="col-sm-3 col-form-label">Gula Darah 2 Jam PP</label>
+                            <div class="col-sm-7">
+                                <input type="number" class="form-control" id="gthae" name="gthae" placeholder="Gula darah 2 jam pp">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nama" class="col-sm-3 col-form-label">Jenis Aktivitas</label>
+                            <div class="col-sm-7">
+                                <select name="aktivitas" id="aktivitasSelect" required class="form-control">
+                                    <option disabled selected>Pilih...</option>
+                                    <option value="1.30">Sangat Ringan</option>
+                                    <option value="1.65">Ringan</option>
+                                    <option value="1.76">Sedang</option>
+                                    <option value="2.10">Berat</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="container mt-5">
+                            <!-- Button to Open the Modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">
+                                Periksa
+                            </button>
+
+                            <!-- The Modal -->
+                            <div class="modal fade" id="resultModal" >
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Hasil Diagnosis</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal Body -->
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="patientName">Nama:</label>
+                                                <input type="text" class="form-control" id="patientName" value="John Doe" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="diagnosis">Diagnosis:</label>
+                                                <textarea class="form-control" id="diagnosis" rows="1" readonly>Diabetes</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="portionStandard">Standar Porsi Makan:</label>
+                                                <textarea class="form-control" id="portionStandard" rows="4" readonly>3 servings of vegetables, 2 servings of fruits, 1 serving of protein</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="mealSuggestion">Saran Menu Makan:</label>
+                                                <textarea class="form-control" id="mealSuggestion" rows="5" readonly>Grilled chicken with steamed broccoli, brown rice, and an apple</textarea>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal Footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>  
+    </section>
+
+
+
+    {% if penyakit %}
+    <h2>Hasil Prediksi:</h2>
+    <p>{{ penyakit }}</p>
+
+    <h2>Solusi:</h2>
+    {% if solusi == 'E01' %}
+    <p>Energi 1100 kalori:</p>
+    <p>- Olahraga</p>
+    <p>Aktivitas ringan seperti berjalan cepat, bersepeda santai, yoga, atau berenang.</p>
+    <p>Latihan kekuatan ringan dengan menggunakan beban tubuh atau alat ringan seperti dumbbell.</p>
+    <p>- Standar Porsi Makan</p>
+    <p>Nasi atau penukar :2 ½ cup</p>
+    <p>Ikan atau penukar : 2</p>
+    <p>Daging atau penukar : 1</p>
+    <p>Tempe atau penukar : 2 </p>
+    <p>Sayuran atau penukar A : S (Sekehendak) </p>
+    <p>Sayuran atau penukar B : 2</p>
+    <p>Buah atau penukar : 4 </p>
+    <p>Susu : - </p>
+    <p>Minyak atau penukar : 3</p>
+    <p>- Saran menu makan:</p>
+    <p>Pagi 07.00</p>
+    <p>Nasi : ½ </p>
+    <p>Ikan : 1 </p>
+    <p>Tempe : - </p>
+    <p>Sayuran A : S (Sekehendak) </p>
+    <p>Minyak : 1 </p>
+    <!-- Sertakan bagian Saran menu makan untuk E01 di sini -->
+    {% elif solusi == 'E02' %}
+    <p>Energi 1300 kalori:</p>
+    <p>- Olahraga</p>
+    <p>Aktivitas ringan seperti berjalan cepat, bersepeda santai, yoga, atau berenang.</p>
+    <p>Latihan kekuatan ringan dengan menggunakan beban tubuh atau alat ringan seperti dumbbell.</p>
+    <p>- Standar Porsi Makan</p>
+    <p>Nasi atau penukar : 3 cup</p>
+    <p>Ikan atau penukar : 2</p>
+    <p>Daging atau penukar : 1</p>
+    <p>Tempe atau penukar : 2 </p>
+    <p>Sayuran atau penukar A : S (Sekehendak) </p>
+    <p>Sayuran atau penukar B : 2</p>
+    <p>Buah atau penukar : 4 </p>
+    <p>Susu : - </p>
+    <p>Minyak atau penukar : 4</p>
+    <p>- Saran menu makan:</p>
+    <p>Pagi 07.00</p>
+    <p>Nasi : 1</p>
+    <p>Ikan : 1 </p>
+    <p>Tempe : - </p>
+    <p>Sayuran A : S (Sekehendak) </p>
+    <p>Minyak : 1 </p>
+    <p>Pukul 10.00</p>
+    <p>Buah : 1</p>
+    <p>Susu : - </p>
+    <p>Siang 12.00</p>
+    <p>Nasi : 1 </p>
+    <p>Daging : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1</p>
+    <p>Buah : 1</p>
+    <p>Minyak : 2</p>
+    <p>Pukul 16.00</p>
+    <p>Buah : 1</p>
+    <p>Malam 19.00</p>
+    <p>Nasi : 1</p>
+    <p>Ikan : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1 </p>
+    <p>Buah : 1</p>
+    <p>Minyak : 1</p>
+
+
+    {% elif solusi == 'E03' %}
+    <p>Energi 1500 kalori:</p>
+    <p>- Olahraga</p>
+    <p>Aktivitas ringan seperti berjalan cepat, bersepeda santai, yoga, atau berenang.</p>
+    <p>Latihan kekuatan ringan dengan menggunakan beban tubuh atau alat ringan seperti dumbbell.</p>
+    <p>- Standar Porsi Makan</p>
+    <p>Nasi atau penukar : 4 cup</p>
+    <p>Ikan atau penukar : 2</p>
+    <p>Daging atau penukar : 1</p>
+    <p>Tempe atau penukar : 2 ½ </p>
+    <p>Sayuran atau penukar A : S (Sekehendak) </p>
+    <p>Sayuran atau penukar B : 2</p>
+    <p>Buah atau penukar : 4 </p>
+    <p>Susu : - </p>
+    <p>Minyak atau penukar : 4</p>
+    <p>- Saran menu makan:</p>
+    <p>Pagi 07.00</p>
+    <p>Nasi : 1</p>
+    <p>Ikan : 1 </p>
+    <p>Tempe : ½ </p>
+    <p>Sayuran A : S (Sekehendak) </p>
+    <p>Minyak : 1 </p>
+    <p>Pukul 10.00</p>
+    <p>Buah : 1</p>
+    <p>Susu : - </p>
+    <p>Siang 12.00</p>
+    <p>Nasi : 2</p>
+    <p>Daging : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1</p>
+    <p>Buah : 1</p>
+    <p>Minyak : 2</p>
+    <p>Pukul 16.00</p>
+    <p>Buah : 1</p>
+    <p>Malam 19.00</p>
+    <p>Nasi : 1</p>
+    <p>Ikan : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1 </p>
+    <p>Buah : 1</p>
+    <p>Minyak : 1</p>
+    {% elif solusi == 'E04' %}
+    <p>Energi 1700 kalori:</p>
+    <p>- Olahraga</p>
+    <p>Aktivitas aerobik seperti jogging, bersepeda, berenang, atau bermain tenis.</p>
+    <p>Latihan kekuatan dengan beban yang lebih berat untuk membangun kekuatan dan massa otot.</p>
+    <p>- Standar Porsi Makan</p>
+    <p>Nasi atau penukar : 5 cup</p>
+    <p>Ikan atau penukar : 2</p>
+    <p>Daging atau penukar : 1</p>
+    <p>Tempe atau penukar : 2 ½ </p>
+    <p>Sayuran atau penukar A : S (Sekehendak) </p>
+    <p>Sayuran atau penukar B : 2</p>
+    <p>Buah atau penukar : 4 </p>
+    <p>Susu : - </p>
+    <p>Minyak atau penukar : 4</p>
+    <p>- Saran menu makan:</p>
+    <p>Pagi 07.00</p>
+    <p>Nasi : 1</p>
+    <p>Ikan : 1 </p>
+    <p>Tempe : ½ </p>
+    <p>Sayuran A : S (Sekehendak) </p>
+    <p>Minyak : 1 </p>
+    <p>Pukul 10.00</p>
+    <p>Buah : 1</p>
+    <p>Susu : - </p>
+    <p>Siang 12.00</p>
+    <p>Nasi : 2 </p>
+    <p>Daging : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1</p>
+    <p>Buah : 1</p>
+    <p>Minyak : 1</p>
+    <p>Pukul 16.00</p>
+    <p>Buah : 1</p>
+    <p>Malam 19.00</p>
+    <p>Nasi : 2</p>
+    <p>Ikan : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1 </p>
+    <p>Buah : 1</p>
+    <p>Minyak : 1</p>
+    {% elif solusi == 'E05' %}
+    <p>Energi 1900 kalori:</p>
+    <p>- Olahraga</p>
+    <p>Aktivitas aerobik seperti jogging, bersepeda, berenang, atau bermain tenis.</p>
+    <p>Latihan kekuatan dengan beban yang lebih berat untuk membangun kekuatan dan massa otot.</p>
+    <p>- Standar Porsi Makan</p>
+    <p>Nasi atau penukar : 5 ½ cup</p>
+    <p>Ikan atau penukar : 2</p>
+    <p>Daging atau penukar : 1</p>
+    <p>Tempe atau penukar : 3</p>
+    <p>Sayuran atau penukar A : S (Sekehendak)</p>
+    <p>Sayuran atau penukar B : 2</p>
+    <p>Buah atau penukar : 4</p>
+    <p>Susu : - </p>
+    <p>Minyak atau penukar : 6</p>
+    <p>- Saran menu makan:</p>
+    <p>Pagi 07.00</p>
+    <p>Nasi :1 ½ </p>
+    <p>Ikan : 1 </p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Minyak : 2</p>
+    <p>Pukul 10.00</p>
+    <p>Buah : 1</p>
+    <p>Susu : - </p>
+    <p>Siang 12.00</p>
+    <p>Nasi : 2</p>
+    <p>Daging : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1</p>
+    <p>Buah : 1</p>
+    <p>Minyak : 2</p>
+    <p>Pukul 16.00</p>
+    <p>Buah : 1</p>
+    <p>Malam 19.00</p>
+    <p>Nasi : 2</p>
+    <p>Ikan : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1</p>
+    <p>Buah : 1</p>
+    <p>Minyak : 2</p>
+    {% elif solusi == 'E06' %}
+    <p>Energi 2100 kalori:</p>
+    <p>- Olahraga</p>
+    <p>Aktivitas aerobik seperti jogging, bersepeda, berenang, atau bermain tenis.</p>
+    <p>Latihan kekuatan dengan beban yang lebih berat untuk membangun kekuatan dan massa otot.</p>
+    <p>- Standar Porsi Makan</p>
+    <p>Nasi atau penukar : 6 cup</p>
+    <p>Ikan atau penukar : 2</p>
+    <p>Daging atau penukar : 1</p>
+    <p>Tempe atau penukar : 3</p>
+    <p>Sayuran atau penukar A : S (Sekehendak) </p>
+    <p>Sayuran atau penukar B : 2</p>
+    <p>Buah atau penukar : 4 </p>
+    <p>Susu : - </p>
+    <p>Minyak atau penukar : 7</p>
+    <p>- Saran menu makan:</p>
+    <p>Pagi 07.00</p>
+    <p>Nasi : 1 ½ </p>
+    <p>Ikan : 1 </p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak) </p>
+    <p>Minyak : 2</p>
+    <p>Pukul 10.00</p>
+    <p>Buah : 1</p>
+    <p>Susu : - </p>
+    <p>Siang 12.00</p>
+    <p>Nasi : 2 ½ </p>
+    <p>Daging : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1</p>
+    <p>Buah : 1</p>
+    <p>Minyak : 3</p>
+    <p>Pukul 16.00</p>
+    <p>Buah : 1</p>
+    <p>Malam 19.00</p>
+    <p>Nasi : 2</p>
+    <p>Ikan : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1 </p>
+    <p>Buah : 1</p>
+    <p>Minyak : 2</p>
+
+    {% elif solusi == 'E07' %}
+    <p>Energi 2300 kalori:</p>
+    <p>- Olahraga</p>
+    <p>Kombinasi antara latihan kardiovaskular intensitas sedang-hingga-tinggi seperti lari cepat, bersepeda cepat,
+        atau latihan HIIT (High Intensity Interval Training).</p>
+    <p>Latihan kekuatan yang intens dengan menggunakan beban yang lebih berat dan variasi latihan untuk merangsang
+        pertumbuhan otot.</p>
+    <p>- Standar Porsi Makan</p>
+    <p>Nasi atau penukar : 7 cup</p>
+    <p>Ikan atau penukar : 2</p>
+    <p>Daging atau penukar : 1</p>
+    <p>Tempe atau penukar : 3</p>
+    <p>Sayuran atau penukar A : S (Sekehendak)</p>
+    <p>Sayuran atau penukar B : 2</p>
+    <p>Buah atau penukar : 4</p>
+    <p>Susu : 1</p>
+    <p>Minyak atau penukar : 7</p>
+    <p>- Saran menu makan:</p>
+    <p>Pagi 07.00</p>
+    <p>Nasi : 1 ½</p>
+    <p>Ikan : 1</p>
+    <p>Tempe : -</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Minyak : 2</p>
+    <p>Pukul 10.00</p>
+    <p>Buah : 1</p>
+    <p>Susu : 1</p>
+    <p>Siang 12.00</p>
+    <p>Nasi : 3</p>
+    <p>Daging : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1</p>
+    <p>Buah : 1</p>
+    <p>Minyak : 3</p>
+    <p>Pukul 16.00</p>
+    <p>Buah : 1</p>
+    <p>Malam 19.00</p>
+    <p>Nasi : 2 ½</p>
+    <p>Ikan : 1</p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak)</p>
+    <p>Sayuran B : 1</p>
+    <p>Buah : 1</p>
+    <p>Minyak : 2</p>
+
+    {% elif solusi == 'E08' %}
+    <p>Energi 2500 kalori:</p>
+    <p>- Olahraga</p>
+    <p>Kombinasi antara latihan kardiovaskular intensitas sedang-hingga-tinggi seperti lari cepat, bersepeda cepat,
+        atau
+        latihan HIIT (High Intensity Interval Training).</p>
+    <p>Latihan kekuatan yang intens dengan menggunakan beban yang lebih berat dan variasi latihan untuk merangsang
+        pertumbuhan otot.</p>
+    <p>- Standar Porsi Makan</p>
+    <p>Nasi atau penukar :7 ½ cup</p>
+    <p>Ikan atau penukar : 2</p>
+    <p>Daging atau penukar : 1</p>
+    <p>Tempe atau penukar : 5</p>
+    <p>Sayuran atau penukar A : S (Sekehendak) </p>
+    <p>Sayuran atau penukar B : 2</p>
+    <p>Buah atau penukar : 4 </p>
+    <p>Susu : 1</p>
+    <p>Minyak atau penukar : 7</p>
+    <p>- Saran menu makan:</p>
+    <p>Pagi 07.00</p>
+    <p>Nasi : 2 </p>
+    <p>Ikan : 1 </p>
+    <p>Tempe : 1</p>
+    <p>Sayuran A : S (Sekehendak) </p>
+    <p>Minyak : 2 </p>
+    <!-- Sertakan bagian Saran menu makan untuk E08 di sini -->
+    {% else %}
+    <p>Belum Diketahui</p>
+    {% endif %}
+    {% endif %}
+
+
+    <script>
+        function predict() {
+            // Mendapatkan nilai gender dari radio button yang dipilih
+            var genderInputs = document.getElementsByName("gender");
+            var selectedGender;
+            for (var i = 0; i < genderInputs.length; i++) {
+                if (genderInputs[i].checked) {
+                    selectedGender = genderInputs[i].value;
+                    break;
+                }
+            }
+
+            // Mendapatkan nilai aktivitas dari select
+            var aktivitasSelect = document.getElementById("aktivitasSelect");
+            var aktivitas = aktivitasSelect.options[aktivitasSelect.selectedIndex].value;
+
+            // Menyesuaikan nilai aktivitas berdasarkan gender
+            if (selectedGender == 0) {  // Jika perempuan
+                if (aktivitas == "1.30") {
+                    aktivitas = "1.55";
+                } else if (aktivitas == "1.65") {
+                    aktivitas = "1.70";
+                } else if (aktivitas == "1.76") {
+                    aktivitas = "1.70";
+                } else if (aktivitas == "2.10") {
+                    aktivitas = "2.00";
+                }
+            }
+
+            // Mengatur nilai aktivitas pada input
+            document.getElementById("aktivitasSelect").value = aktivitas;
+
+            // Mengirimkan formulir
+            document.getElementById("predictionForm").submit();
+        }
+    </script>
+
+    <!-- jQery -->
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/static/js/bootstrap.js"></script>
+    <!-- nice select -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"
+        integrity="sha256-Zr3vByTlMGQhvMfgkQ5BtWRSKBGa2QlspKYJnkjZTmo=" crossorigin="anonymous"></script>
+    <!-- owl slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <!-- datepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+    <!-- custom js -->
+    <script src="/static/js/custom.js"></script>
+</body>
+
+</html>
