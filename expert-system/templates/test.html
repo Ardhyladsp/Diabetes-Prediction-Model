@@ -81,45 +81,65 @@
                                 <input type="text" class="form-control" id="nama" name="nama" placeholder="nama">
                             </div>
                         </div>
+
         
-                        <hr>
                         <div class="form-row">
                             <div class="form-group col-md-5">
-                                <label for="g1">Sering haus</label>
-                                <select id="g1" name="g1" required class="form-control">
+                                <label for="umur">Umur</label>
+                                <input type="number" class="form-control" id="umur" name="umur" placeholder="umur" required>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="bb">Berat Badan</label>
+                                <input type="number" class="form-control" id="bb" name="bb" placeholder="berat badan" required>
+                            </div>
+                        </div>
+        
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="s1">Jenis Kelamin</label>
+                                <select id="s1" name="s1" required class="form-control">
                                     <option disabled selected>Pilih...</option>
-                                    <option value="1">Ya</option>
-                                    <option value="0">Tidak</option>
+                                    <option value="1">Laki-laki</option>
+                                    <option value="0">Perempuan</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-5">
-                                <label for="g2">Sering lapar</label>
-                                <select id="g2" name="g2" required class="form-control">
+                                <label for="tb">Tinggi Badan</label>
+                                <input type="number" class="form-control" id="tb" name="tb" placeholder="tinggi badan" required>
+                            </div>
+                        </div>
+                        <br>
+        
+                        <div class="form-group row justify-content-center">
+                            <label for="gds" class="col-sm-3 col-form-label">Gula Darah Sewaktu</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="gds" name="gds" placeholder="Gula darah sewaktu" required>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <label for="gdp" class="col-sm-3 col-form-label">Gula Darah Puasa</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="gdp" name="gdp" placeholder="Gula darah puasa" required>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <label for="gdpp" class="col-sm-3 col-form-label">Gula Darah 2 Jam PP</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="gdpp" name="gdpp" placeholder="Gula darah 2 jam post prandial" required>
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <label for="aktivitasSelect" class="col-sm-3 col-form-label">Jenis Aktivitas</label>
+                            <div class="col-sm-8">
+                                <select name="aktivitas" id="aktivitasSelect" required class="form-control">
                                     <option disabled selected>Pilih...</option>
-                                    <option value="1">Ya</option>
-                                    <option value="0">Tidak</option>
+                                    <option value="1.30">Sangat Ringan</option>
+                                    <option value="1.65">Ringan</option>
+                                    <option value="1.76">Sedang</option>
+                                    <option value="2.10">Berat</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-5">
-                                <label for="g3">Sering buang air kecil</label>
-                                <select id="g3" name="g3" required class="form-control">
-                                    <option disabled selected>Pilih...</option>
-                                    <option value="1">Ya</option>
-                                    <option value="0">Tidak</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="g4">Kenaikan berat badan </label>
-                                <select id="g4" name="g4" required class="form-control">
-                                    <option disabled selected>Pilih...</option>
-                                    <option value="1">Ya</option>
-                                    <option value="0">Tidak</option>
-                                </select>
-                            </div>
-                        </div>
-                        </hr>
 
                         <div class="container mt-5">
                             <!-- Button to Open the Modal -->
@@ -128,29 +148,6 @@
                             </button>
 
                             {% if penyakit %}
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                Launch static backdrop modal
-                            </button>
-                            
-                            <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Hasil Pemeriksaan</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                    Anda tidak memiliki gejala diabetes! 
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Understood</button>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>    
                             <!-- The Modal -->
                             <div class="modal fade" id="resultModal">
                                 <div class="modal-dialog modal-lg">

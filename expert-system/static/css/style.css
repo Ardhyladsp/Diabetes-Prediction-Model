@@ -97,21 +97,6 @@ a:focus {
   padding: 15px 0;
 }
 
-.header_section .header_top .contact_nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.header_section .header_top .contact_nav a {
-  margin-right: 25px;
-  color: #1cb45b;
-}
-
-.header_section .header_top .contact_nav a i {
-  color: #00c6a9;
-}
-
 .header_section .header_bottom {
   background-color: #00c6a9;
 }
@@ -850,75 +835,6 @@ a:focus {
   right: 0;
 }
 
-.contact_section {
-  position: relative;
-}
-
-.contact_section .heading_container {
-  margin-bottom: 25px;
-}
-
-.contact_section .heading_container h2 {
-  text-transform: uppercase;
-}
-
-.contact_section .form_container {
-  margin: 0 auto;
-  /* Mengatur margin menjadi auto untuk membuat form berada di tengah */
-  max-width: 50%;
-  /* Menetapkan lebar maksimum form untuk memberi ruang di sekitarnya */
-}
-
-.contact_section .form_container input {
-  width: 100%;
-  border: 1px solid #00c6a9;
-  height: 50px;
-  margin-bottom: 25px;
-  padding-left: 15px;
-  background-color: transparent;
-  outline: none;
-  color: #101010;
-}
-
-.contact_section .form_container input::-webkit-input-placeholder {
-  color: #00c6a9;
-}
-
-.contact_section .form_container input:-ms-input-placeholder {
-  color: #00c6a9;
-}
-
-.contact_section .form_container input::-ms-input-placeholder {
-  color: #00c6a9;
-}
-
-.contact_section .form_container input::placeholder {
-  color: #00c6a9;
-}
-
-.contact_section .form_container input.message-box {
-  height: 120px;
-}
-
-.contact_section .form_container button {
-  border: none;
-  text-transform: uppercase;
-  display: inline-block;
-  padding: 15px 65px;
-  background-color: #00c6a9;
-  color: #ffffff;
-  border-radius: 0;
-  font-weight: bold;
-}
-
-.contact_section .form_container button:hover {
-  background-color: #00937d;
-}
-
-.contact_section .img-box img {
-  width: 100%;
-}
-
 .info_section {
   background-color: #252525;
   color: #ffffff;
@@ -1080,26 +996,6 @@ a:focus {
 
 .info_section .info_post .post_box:not(:nth-last-child(1)) {
   margin-bottom: 15px;
-}
-
-.info_section .info_contact a {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #ffffff;
-  margin-bottom: 10px;
-}
-
-.info_section .info_contact a i {
-  margin-right: 5px;
-  width: 25px;
-}
-
-.info_section .info_contact a:hover p {
-  color: #ffffff;
 }
 
 .info_section .social_box {

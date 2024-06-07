@@ -2,9 +2,10 @@ from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 import joblib
 import pandas as pd
+import xgboost 
 
 app = Flask(__name__)
-loaded_model = joblib.load('model/model-dum6.pkl')
+loaded_model = joblib.load('model/model-xgb.pkl')
 
 # Configuration
 app.config['MYSQL_HOST'] = '127.0.0.1'
@@ -54,7 +55,7 @@ def determine_latihan(gds):
     elif 100 < gds <= 250:
         return latihan_fisik
     elif 200 < gds <= 300:
-        return ''' Tidak boleh Latihan Fisik \n ''' + latihan_fisik
+        return ''' Harap Menunda Latihan Fisik \n ''' + latihan_fisik
 
 
 
@@ -63,6 +64,10 @@ label_mapping = {0: 'Diabetes', 1: 'Normal', 2: 'Prediabetes'}
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route("/test")
+def test():
+    return render_template("test.html")
 
 @app.route("/prediksi", methods=["GET", "POST"])
 def prediksi():

@@ -108,3 +108,26 @@ button:hover {
 .form-group{
     margin: auto;
 }
+
+.modal-body {
+    max-height: 500px; /* atau sesuai dengan kebutuhan */
+    overflow-y: auto;
+}
+
+.modal-body ul {
+    padding-left: 20px;
+}
+.modal-body li {
+    list-style-type: none;
+    margin-bottom: 5px;
+}
+.modal-body h5 {
+    margin-top: 20px;
+}
+.modal-body p {
+    margin-bottom: 10px;
+}
+
+/* .layout_padding-bottom .row{
+    margin: auto;
+} */
