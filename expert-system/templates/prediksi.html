@@ -126,69 +126,6 @@
                             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">
                                 Periksa
                             </button>
-
-                            {% if penyakit %}
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                Launch static backdrop modal
-                            </button>
-                            
-                            <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Hasil Pemeriksaan</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                    Anda tidak memiliki gejala diabetes! 
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Understood</button>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>    
-                            <!-- The Modal -->
-                            <div class="modal fade" id="resultModal">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-
-                                        <!-- Modal Header -->
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Hasil Pemeriksaan</h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        </div>
-
-                                        <!-- Modal Body -->
-                                        <div class="modal-body">
-                                            <h5>Nama Pasien: <span id="namaPasien">{{ nama }}</span></h5>
-                                            <h5><strong>Hasil Diagnosis:</strong> <span id="hasilDiagnosis" name="hasilDiagnosis"}>{{ penyakit }}</span></h5> <br>
-                                            <div>
-                                                <h5>Standar Porsi Makan</h5>
-                                                <p id="standarPorsiMakan" name="standarPorsiMakan">{{ spm }}</p><br>
-                                            </div>
-                                            <div>
-                                                <h5>Saran Menu Makan</h5>
-                                                <p id="saranMenuMakan" name="saranMenuMakan">{{ smm }}</p><br>
-                                            </div>
-                                            <div>
-                                                <h5>Saran Latihan Fisik</h5>
-                                                <p id="saranLatihanFisik" name="saranLatihanFisik">{{ latihan }}</p><br>
-                                            </div>
-                                        </div>
-
-                                        <!-- Modal Footer -->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
                         </div>
                     </form>
                 </div>

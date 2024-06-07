@@ -5,7 +5,20 @@ body {
   overflow-x: hidden;
 }
 
-.hero_area{
+.banner-success {
+  background-color: green;
+  padding: 20px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.banner-success-text {
+  margin-bottom: 0px;
+}
+
+.hero_area {
   overflow: hidden;
 }
 
