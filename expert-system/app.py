@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
 import joblib
 import pandas as pd
@@ -59,10 +59,10 @@ def determine_latihan(gds):
     
 def determine_gejala(g1,g2,g3,g4):
     if g1 or g2 or g3 or g4 == 1:
-        return render_template('test-1.html')
+        return redirect(url_for('test1'))
     else :
         status = "Anda tidak memiliki gejala diabetes! "
-        return render_template('index.html', status=status)
+        return redirect(url_for('home', status=status))
     
 
 label_mapping = {0: 'Normal', 1: 'Diabetes'}
@@ -71,7 +71,7 @@ label_mapping = {0: 'Normal', 1: 'Diabetes'}
 def home():
     return render_template("index.html")
 
-@app.route("/test")
+@app.route("/test", methods=["GET", "POST"])
 def test(): 
     if request.method == "POST":
         # Get form data
@@ -92,10 +92,10 @@ def test():
         # Prepare input data for prediction
         input_data = pd.DataFrame({
             'Umur': [umur],
-            'Gula Darah Sewaktu': [gula_darah_sewaktu],
+            'Gula darah Sewaktu': [gula_darah_sewaktu],
             'Gula Darah Puasa': [gula_darah_puasa],
             'Gula Darah 2 Jam PP': [gula_darah_2_jam_pp],
-            'Gender': [gender],
+            'Jenis Kelamin': [gender],
         })
 
         # Predict disease
@@ -136,7 +136,7 @@ def test():
 
     return render_template("test.html")
 
-@app.route("/test-1")
+@app.route("/test-1", methods=["GET", "POST"])
 def test1():
     if request.method == "POST":
         # Get form data
@@ -152,10 +152,10 @@ def test1():
         # Prepare input data for prediction
         input_data = pd.DataFrame({
             'Umur': [umur],
-            'Gula Darah Sewaktu': [gula_darah_sewaktu],
+            'Gula darah Sewaktu': [gula_darah_sewaktu],
             'Gula Darah Puasa': [gula_darah_puasa],
             'Gula Darah 2 Jam PP': [gula_darah_2_jam_pp],
-            'Gender': [gender],
+            'Jenis Kelamin': [gender],
         })
 
         # Predict disease
@@ -183,17 +183,18 @@ def test1():
 
         # Save the data to the database
         cur = mysql.connection.cursor()
-        pasien_id = cur.lastrowid
-        cur.execute('''INSERT INTO pasien WHERE id = %s (umur, jenis_kelamin, berat_badan, tinggi_badan, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, jenis_aktivitas) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)''',
-                    (pasien_id, umur, gender, berat_badan, tinggi_badan, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, aktivitas))
+        cur.execute('''SELECT MAX(id) FROM pasien''')
+        pasien_id = cur.fetchone()
+        cur.execute('''UPDATE pasien SET umur=%s, jenis_kelamin=%s, berat_badan=%s, tinggi_badan=%s, gula_darah_sewaktu=%s, gula_darah_puasa=%s, gula_darah_2_jam_pp= %s, jenis_aktivitas = %s WHERE id = %s''',
+                    (umur, gender, berat_badan, tinggi_badan, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, aktivitas, pasien_id))
         mysql.connection.commit()
         
         cur.execute('''INSERT INTO hasil_prediksi (pasien_id, status_diagnosa, solusi_id) VALUES (%s, %s, %s)''',
             (pasien_id, prediksi, solusi_id))
         mysql.connection.commit()
         
-        cursor.execute('SELECT nama FROM pasien WHERE id = %s', (pasien_id,))
-        nama = cursor.fetchone()
+        cur.execute('SELECT nama FROM pasien WHERE id = %s', (pasien_id,))
+        nama = cur.fetchone()
         
         cur.close()
 
