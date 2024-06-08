@@ -83,10 +83,6 @@ def test():
         gula_darah_puasa = int(request.form["gdp"])
         gula_darah_2_jam_pp = int(request.form["gdpp"])
         gender = int(request.form["s1"])
-        gejala1 = int(request.form["g1"])
-        gejala2 = int(request.form["g2"])
-        gejala3 = int(request.form["g3"])
-        gejala4 = int(request.form["g4"])
         aktivitas = float(request.form.get('aktivitas', 0.0))
 
         # Prepare input data for prediction
@@ -121,8 +117,8 @@ def test():
 
         # Save the data to the database
         cur = mysql.connection.cursor()
-        cur.execute('''INSERT INTO pasien (nama, umur, jenis_kelamin, berat_badan, tinggi_badan, g1, g2, g3, g4, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, jenis_aktivitas) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',
-                    (nama, umur, gender, berat_badan, tinggi_badan, gejala1, gejala2, gejala3, gejala4, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, aktivitas))
+        cur.execute('''INSERT INTO pasien (nama, umur, jenis_kelamin, berat_badan, tinggi_badan, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, jenis_aktivitas) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)''',
+                    (nama, umur, gender, berat_badan, tinggi_badan, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, aktivitas))
         mysql.connection.commit()
         pasien_id = cur.lastrowid
         
@@ -131,7 +127,9 @@ def test():
         mysql.connection.commit()
         
         cur.close()
-
+        
+        energi = int(energi)
+        
         return render_template("test.html", penyakit=prediksi, nama=nama, spm=spm, smm=smm, latihan=latihan, energi=energi)
 
     return render_template("test.html")
@@ -139,66 +137,83 @@ def test():
 @app.route("/test-1", methods=["GET", "POST"])
 def test1():
     if request.method == "POST":
-        # Get form data
-        umur = int(request.form["umur"])
-        berat_badan = int(request.form['bb'])
-        tinggi_badan = int(request.form['tb'])
-        gula_darah_sewaktu = int(request.form["gds"])
-        gula_darah_puasa = int(request.form["gdp"])
-        gula_darah_2_jam_pp = int(request.form["gdpp"])
-        gender = int(request.form["s1"])
-        aktivitas = float(request.form.get('aktivitas', 0.0))
+        try:
+            # Get form data
+            umur = int(request.form["umur"])
+            berat_badan = int(request.form['bb'])
+            tinggi_badan = int(request.form['tb'])
+            gula_darah_sewaktu = int(request.form["gds"])
+            gula_darah_puasa = int(request.form["gdp"])
+            gula_darah_2_jam_pp = int(request.form["gdpp"])
+            gender = int(request.form["s1"])
+            aktivitas = float(request.form.get('aktivitas', 0.0))
 
-        # Prepare input data for prediction
-        input_data = pd.DataFrame({
-            'Umur': [umur],
-            'Gula darah Sewaktu': [gula_darah_sewaktu],
-            'Gula Darah Puasa': [gula_darah_puasa],
-            'Gula Darah 2 Jam PP': [gula_darah_2_jam_pp],
-            'Jenis Kelamin': [gender],
-        })
+            # Prepare input data for prediction
+            input_data = pd.DataFrame({
+                'Umur': [umur],
+                'Gula darah Sewaktu': [gula_darah_sewaktu],
+                'Gula Darah Puasa': [gula_darah_puasa],
+                'Gula Darah 2 Jam PP': [gula_darah_2_jam_pp],
+                'Jenis Kelamin': [gender],
+            })
 
-        # Predict disease
-        penyakit_prediksi = loaded_model.predict(input_data)
-        prediksi = label_mapping.get(penyakit_prediksi[0], 'Belum Diketahui')
+            # Predict disease
+            penyakit_prediksi = loaded_model.predict(input_data)
+            prediksi = label_mapping.get(penyakit_prediksi[0], 'Belum Diketahui')
 
-        # Calculate energy
-        energi = calculate_energi(umur, tinggi_badan, aktivitas, gender)
-        
-        # Calculate latihan
-        latihan = determine_latihan(gula_darah_sewaktu)
+            # Calculate energy
+            energi = calculate_energi(umur, tinggi_badan, aktivitas, gender)
+            
+            # Calculate latihan
+            latihan = determine_latihan(gula_darah_sewaktu)
 
-        # Database query to fetch solution
-        conn = mysql.connection
-        cursor = conn.cursor()
-        solusi_code = determine_solusi(energi)
-        cursor.execute('SELECT id, standar_porsi_makan, saran_menu_makan FROM solusi WHERE energi = %s', (solusi_code,))
-        result = cursor.fetchone()
-        
-        solusi_id = result[0]
-        spm = result[1]
-        smm = result[2]
-        
-        cursor.close()
+            # Database query to fetch solution
+            conn = mysql.connection
+            cursor = conn.cursor()
+            solusi_code = determine_solusi(energi)
+            cursor.execute('SELECT id, standar_porsi_makan, saran_menu_makan FROM solusi WHERE energi = %s', (solusi_code,))
+            result = cursor.fetchone()
+            
+            if result:
+                solusi_id, spm, smm = result
+            else:
+                raise ValueError("No solution found for the given energy value.")
 
-        # Save the data to the database
-        cur = mysql.connection.cursor()
-        cur.execute('''SELECT MAX(id) FROM pasien''')
-        pasien_id = cur.fetchone()
-        cur.execute('''UPDATE pasien SET umur=%s, jenis_kelamin=%s, berat_badan=%s, tinggi_badan=%s, gula_darah_sewaktu=%s, gula_darah_puasa=%s, gula_darah_2_jam_pp= %s, jenis_aktivitas = %s WHERE id = %s''',
-                    (umur, gender, berat_badan, tinggi_badan, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, aktivitas, pasien_id))
-        mysql.connection.commit()
-        
-        cur.execute('''INSERT INTO hasil_prediksi (pasien_id, status_diagnosa, solusi_id) VALUES (%s, %s, %s)''',
-            (pasien_id, prediksi, solusi_id))
-        mysql.connection.commit()
-        
-        cur.execute('SELECT nama FROM pasien WHERE id = %s', (pasien_id,))
-        nama = cur.fetchone()
-        
-        cur.close()
+            # Get the latest pasien id
+            cursor.execute('SELECT MAX(id) FROM pasien')
+            pasien_id = cursor.fetchone()[0]
+            
+            # Update pasien information
+            cursor.execute('''
+                UPDATE pasien 
+                SET umur=%s, jenis_kelamin=%s, berat_badan=%s, tinggi_badan=%s, gula_darah_sewaktu=%s, 
+                    gula_darah_puasa=%s, gula_darah_2_jam_pp=%s, jenis_aktivitas=%s 
+                WHERE id=%s
+            ''', (umur, gender, berat_badan, tinggi_badan, gula_darah_sewaktu, gula_darah_puasa, gula_darah_2_jam_pp, aktivitas, pasien_id))
+            
+            # Insert hasil_prediksi
+            cursor.execute('''
+                INSERT INTO hasil_prediksi (pasien_id, status_diagnosa, solusi_id) 
+                VALUES (%s, %s, %s)
+            ''', (pasien_id, prediksi, solusi_id))
 
+            # Commit the transaction
+            conn.commit()
+
+            # Get pasien name
+            cursor.execute('SELECT nama FROM pasien WHERE id = %s', (pasien_id,))
+            nama = cursor.fetchone()[0]
+
+        except Exception as e:
+            conn.rollback()
+            return str(e), 500
+        finally:
+            cursor.close()
+
+            energi = int(energi)
+            
         return render_template("test-1.html", penyakit=prediksi, nama=nama, spm=spm, smm=smm, latihan=latihan, energi=energi)
+
     return render_template("test-1.html")
 
 @app.route("/prediksi", methods=["GET", "POST"])

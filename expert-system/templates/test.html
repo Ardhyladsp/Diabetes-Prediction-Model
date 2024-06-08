@@ -234,7 +234,53 @@
 
             return false;
         }
+
     </script>
+
+    <script>
+        function sendForm() {
+            // Serialize form data
+            var formData = $("#predictionForm").serialize();
+    
+            // Send the form data using AJAX
+            $.ajax({
+                type: "POST",
+                url: "/test",
+                data: formData,
+                success: function(response) {
+                    // Update modal content with response data
+                    $("#namaPasien").text(response.nama);
+                    $("#hasilDiagnosis").text(response.penyakit);
+                    $("#energi").text(response.energi);
+                    $("#standarPorsiMakan").text(response.spm);
+                    $("#saranMenuMakan").text(response.smm);
+                    $("#saranLatihanFisik").text(response.latihan);
+    
+                    // Show the modal
+                    $("#resultModal").modal("show");
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors here
+                    console.error(xhr.responseText);
+                }
+            });
+    
+            // Prevent default form submission
+            return false;
+        }
+    
+        // Add event listener to the form
+        $(document).ready(function() {
+            $("#predictionForm").submit(function(event) {
+                // Prevent default form submission
+                event.preventDefault();
+                // Call function to send form data using AJAX
+                sendForm();
+            });
+        });
+    </script>
+    
+    
 
     <!-- jQery -->
     <script src="/static/js/jquery-3.4.1.min.js"></script>
