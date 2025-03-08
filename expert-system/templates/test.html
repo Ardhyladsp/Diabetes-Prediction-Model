@@ -38,7 +38,7 @@
                 <div class="container-fluid">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         <a class="navbar-brand" href="/">
-                            <img src="/static/images/logo.png" alt="">
+                            <img src="/static/images/lg2.png" alt="">
                         </a>
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -54,10 +54,10 @@
                                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/prediksi">Prediksi</a>
+                                        <a class="nav-link" href="/prediksi">Prediction</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="/test"> Test</a>
+                                        <a class="nav-link" href="/test"> General Check Up</a>
                                     </li>
                                 </ul>
                             </div>
@@ -76,67 +76,67 @@
                     <form method="post" action="/test" id="predictionForm">
                         <h1>Diabetes Test</h1><br>
                         <div class="form-group row justify-content-center">
-                            <label for="nama" class="col-sm-3 col-form-label">Nama Lengkap Pasien</label>
+                            <label for="nama" class="col-sm-3 col-form-label">Patient Name</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nama" name="nama" placeholder="nama">
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="name">
                             </div>
                         </div>
 
         
                         <div class="form-row">
                             <div class="form-group col-md-5">
-                                <label for="umur">Umur</label>
-                                <input type="number" class="form-control" id="umur" name="umur" placeholder="umur" required>
+                                <label for="umur">Age</label>
+                                <input type="number" class="form-control" id="umur" name="umur" placeholder="age" required>
                             </div>
                             <div class="form-group col-md-5">
-                                <label for="bb">Berat Badan</label>
-                                <input type="number" class="form-control" id="bb" name="bb" placeholder="berat badan" required>
+                                <label for="bb">Weight</label>
+                                <input type="number" class="form-control" id="bb" name="bb" placeholder="weight" required>
                             </div>
                         </div>
         
                         <div class="form-row">
                             <div class="form-group col-md-5">
-                                <label for="s1">Jenis Kelamin</label>
+                                <label for="s1">Gender</label>
                                 <select id="s1" name="s1" required class="form-control">
-                                    <option disabled selected>Pilih...</option>
-                                    <option value="0">Laki-laki</option>
-                                    <option value="1">Perempuan</option>
+                                    <option disabled selected>Choose...</option>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-5">
-                                <label for="tb">Tinggi Badan</label>
-                                <input type="number" class="form-control" id="tb" name="tb" placeholder="tinggi badan" required>
+                                <label for="tb">Height</label>
+                                <input type="number" class="form-control" id="tb" name="tb" placeholder="height" required>
                             </div>
                         </div>
                         <br>
         
                         <div class="form-group row justify-content-center">
-                            <label for="gds" class="col-sm-3 col-form-label">Gula Darah Sewaktu</label>
+                            <label for="gds" class="col-sm-3 col-form-label">Random Blood Sugar</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="gds" name="gds" placeholder="Gula darah sewaktu" required>
+                                <input type="number" class="form-control" id="gds" name="gds" placeholder="random blood sugar" required>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <label for="gdp" class="col-sm-3 col-form-label">Gula Darah Puasa</label>
+                            <label for="gdp" class="col-sm-3 col-form-label">Fasting Blood Sugar</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="gdp" name="gdp" placeholder="Gula darah puasa" required>
+                                <input type="number" class="form-control" id="gdp" name="gdp" placeholder="fasting blood sugar" required>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <label for="gdpp" class="col-sm-3 col-form-label">Gula Darah 2 Jam PP</label>
+                            <label for="gdpp" class="col-sm-3 col-form-label">Postprandial Blood Glucose</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="gdpp" name="gdpp" placeholder="Gula darah 2 jam post prandial" required>
+                                <input type="number" class="form-control" id="gdpp" name="gdpp" placeholder="postprandial blood glucose" required>
                             </div>
                         </div>
                         <div class="form-group row justify-content-center">
-                            <label for="aktivitasSelect" class="col-sm-3 col-form-label">Jenis Aktivitas</label>
+                            <label for="aktivitasSelect" class="col-sm-3 col-form-label">Activity</label>
                             <div class="col-sm-8">
                                 <select name="aktivitas" id="aktivitasSelect" required class="form-control">
-                                    <option disabled selected>Pilih...</option>
-                                    <option value="1.30">Sangat Ringan</option>
-                                    <option value="1.65">Ringan</option>
-                                    <option value="1.76">Sedang</option>
-                                    <option value="2.10">Berat</option>
+                                    <option disabled selected>Choose...</option>
+                                    <option value="sangat ringan">Sangat Ringan</option>
+                                    <option value="ringan">Ringan</option>
+                                    <option value="sedang">Sedang</option>
+                                    <option value="berat">Berat</option>
                                 </select>
                             </div>
                         </div>
@@ -144,46 +144,43 @@
                         <div class="container mt-5">
                             <!-- Button to Open the Modal -->
                             <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#resultModal">
-                                Periksa
+                                Check
                             </button>
 
                             {% if penyakit %}
                             <!-- The Modal -->
-                            <div class="modal fade" id="resultModal">
+                            <div class="modal fade" id="resultModal" data-backdrop="static" data-keyboard="false">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Hasil Pemeriksaan</h4>
+                                            <h4 class="modal-title">Diagnosis Result</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
 
                                         <!-- Modal Body -->
                                         <div class="modal-body">
-                                            <h5>Nama Pasien: <span id="namaPasien">{{ nama }}</span></h5>
-                                            <h5><strong>Hasil Diagnosis:</strong> <span id="hasilDiagnosis" name="hasilDiagnosis">{{ penyakit }}</span></h5> <br>
+                                            <h5>Patient Name: <span id="namaPasien">{{ nama }}</span></h5>
+                                            <h5><strong>Diagnosis Result:</strong> <span id="hasilDiagnosis" name="hasilDiagnosis">{{ penyakit }}</span></h5>
+                                            <h5>Note:</h5>
+                                            <p id="GulaDarah" name="GulaDarah">{{ guldar }}</p>
                                             <div>
-                                                <h5>Kebutuhan Energi</h5>
-                                                <p id="energi" name="energi">{{ energi }}</p><br>
+                                                <h5><strong>Energy demand :</strong> <span id="energi" name="energi">{{ energi }} Kkal</span></h5>                                                
                                             </div>
-                                            <div>
+                                            <!--<div>
                                                 <h5>Standar Porsi Makan</h5>
                                                 <p id="standarPorsiMakan" name="standarPorsiMakan">{{ spm }}</p><br>
                                             </div>
                                             <div>
                                                 <h5>Saran Menu Makan</h5>
                                                 <p id="saranMenuMakan" name="saranMenuMakan">{{ smm }}</p><br>
-                                            </div>
-                                            <div>
-                                                <h5>Saran Latihan Fisik</h5>
-                                                <p id="saranLatihanFisik" name="saranLatihanFisik">{{ latihan }}</p><br>
-                                            </div>
+                                            </div>-->
                                         </div>
 
                                         <!-- Modal Footer -->
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeModalBtn">Tutup</button>
                                         </div>
 
                                     </div>
@@ -199,85 +196,36 @@
 
     <script>
         function predict() {
-            // Mendapatkan nilai gender dari radio button yang dipilih
-            var genderInputs = document.getElementsByName("gender");
-            var selectedGender;
-            for (var i = 0; i < genderInputs.length; i++) {
-                if (genderInputs[i].checked) {
-                    selectedGender = genderInputs[i].value;
-                    break;
-                }
-            }
+            // Mendapatkan nilai gender dari select
+            var genderSelect = document.getElementById("s1");
+            var selectedGender = genderSelect.options[genderSelect.selectedIndex].value;
 
             // Mendapatkan nilai aktivitas dari select
             var aktivitasSelect = document.getElementById("aktivitasSelect");
             var aktivitas = aktivitasSelect.options[aktivitasSelect.selectedIndex].value;
 
-            // Menyesuaikan nilai aktivitas berdasarkan gender
-            if (selectedGender == 1) {  // Jika perempuan
-                if (aktivitas == "1.30") {
-                    aktivitas = "1.55";
-                } else if (aktivitas == "1.65") {
-                    aktivitas = "1.70";
-                } else if (aktivitas == "1.76") {
-                    aktivitas = "1.70";
-                } else if (aktivitas == "2.10") {
-                    aktivitas = "2.00";
+            // Menyesuaikan aktivitas jika perempuan
+            if (selectedGender == "1") {  // Jika perempuan
+                switch (aktivitas) {
+                    case "sangat ringan":
+                        aktivitas = "sangat ringan";  // Sesuaikan jika perlu
+                        break;
+                    case "ringan":
+                        aktivitas = "ringan";  // Sesuaikan jika perlu
+                        break;
+                    case "sedang":
+                        aktivitas = "sedang";  // Sesuaikan jika perlu
+                        break;
+                    case "berat":
+                        aktivitas = "berat";  // Sesuaikan jika perlu
+                        break;
                 }
             }
 
-            // Mengatur nilai aktivitas pada input
-            document.getElementById("aktivitasSelect").value = aktivitas;
-
             // Mengirimkan formulir
             document.getElementById("predictionForm").submit();
-
             return false;
         }
-
-    </script>
-
-    <script>
-        function sendForm() {
-            // Serialize form data
-            var formData = $("#predictionForm").serialize();
-    
-            // Send the form data using AJAX
-            $.ajax({
-                type: "POST",
-                url: "/test",
-                data: formData,
-                success: function(response) {
-                    // Update modal content with response data
-                    $("#namaPasien").text(response.nama);
-                    $("#hasilDiagnosis").text(response.penyakit);
-                    $("#energi").text(response.energi);
-                    $("#standarPorsiMakan").text(response.spm);
-                    $("#saranMenuMakan").text(response.smm);
-                    $("#saranLatihanFisik").text(response.latihan);
-    
-                    // Show the modal
-                    $("#resultModal").modal("show");
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors here
-                    console.error(xhr.responseText);
-                }
-            });
-    
-            // Prevent default form submission
-            return false;
-        }
-    
-        // Add event listener to the form
-        $(document).ready(function() {
-            $("#predictionForm").submit(function(event) {
-                // Prevent default form submission
-                event.preventDefault();
-                // Call function to send form data using AJAX
-                sendForm();
-            });
-        });
     </script>
     
     
@@ -295,6 +243,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
     <!-- custom js -->
     <script src="/static/js/custom.js"></script>
+
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("#resultModal").modal('show');
+
+        $("#closeModalBtn").on('click', function(){
+            // Tutup modal
+            $("#resultModal").modal('hide');
+            // Redirect ke halaman home
+            window.location.href = "/"; // Ganti "home.html" dengan URL halaman home Anda
+        });
+    });
+</script>
 </body>
 
 </html>

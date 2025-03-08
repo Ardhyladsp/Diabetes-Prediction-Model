@@ -1,7 +1,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   color: #0c0c0c;
-  background-color: #ffffff;
+  background-color: #eff8f8;
   overflow-x: hidden;
 }
 
@@ -121,12 +121,13 @@ a:focus {
 }
 
 .navbar-brand {
-  background-color: #ffffff;
-  padding: 15px 35px;
+  background-color: #eff8f8;
+  padding: 5px 15px;
+  border-radius: 45%;
 }
 
 .navbar-brand img {
-  width: 55px;
+  width: 70px;
 }
 
 .custom_nav-container {
